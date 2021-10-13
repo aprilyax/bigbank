@@ -6,8 +6,6 @@ This project displays a web page containing a banking simulator.
 
 ## How to Run 
 
-### Available Scripts
-
 In the project directory, you can run:
 
     #### `npm start`
