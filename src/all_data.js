@@ -7,7 +7,7 @@ function AllData() {
   const [info, setInfo] = useContext(UserContext);
 
   return (
-    <div class="card">
+    <div class="card" style={{ margin: '20px'}}>
       <div class="card-body">
       <h5 class="card-title">All Data</h5></div>
         <table class="card-table table">

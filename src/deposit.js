@@ -26,7 +26,7 @@ function Deposit() {
   }
 
   return (
-    <div class="card">
+    <div class="card" style={{ margin: '20px'}}>
       <div class="card-body">
         <h1>Your Current Balance:$ {balance}</h1>
         <br/>
