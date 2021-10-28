@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { UserContext } from './createContext.js';
+import { UseContext } from './createContext.js';
 
+// all data react component
 function AllData() {
-  // to clear error
-  // eslint-disable-next-line
-  const [info, setInfo] = useContext(UserContext);
+  const [info] = useContext(UseContext);
 
   return (
     <div class="card" style={{ margin: '20px'}}>

@@ -4,4 +4,5 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from "./App";
 
+// loading of App component 
 ReactDOM.render(<App />, document.getElementById("root"));

@@ -1,22 +1,19 @@
 import React, { useContext, useState } from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
-import { UserContext } from './createContext.js';
+import { UseContext } from './createContext.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// withdraw react component
 function Withdraw() {
-  const [balance, setBalance] = useContext(UserContext);
-  const [balance_1, setBalance1] = useState(0);
+  const [balance, setBalance] = useContext(UseContext);
+  const [getmoney, setGetmmoney] = useState(0);
+
 
   function calculate() {
-    setBalance(balance - balance_1);
-    setBalance1(0);
 
-    console.log(balance)
-
-    if (balance <= 0){
-
-      toast.warn('You have low funds!', {
+    if (getmoney > balance){
+      toast.error('Transaction Failed: Insufficient Funds', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -25,11 +22,15 @@ function Withdraw() {
         draggable: true,
         progress: undefined,
         });
-
+      return
     }
+    else 
+    setBalance(balance - getmoney);
+    //setGetmmoney(0);
 
-    else if( balance > 0 ){
+    if( balance > 0 ){
 
+      // user success notification 
       toast.success('Balance Updated!', {
         position: 'top-center',
         autoClose: 5000,
@@ -43,23 +44,24 @@ function Withdraw() {
 
   }
 
+// Rendering the form inside bootstrap card; balance and withdraw information
   return (
     <div class="card" style={{ margin: '20px'}}>
       <div class="card-body">
         <h1>Your Current Balance:$ {balance}</h1>
         <br/>
         <form>
-          <div className="form-group" controlId="formBasicEmail">
+          <div className="form-group" controlId="input">
             <label>Withdraw Amount</label>
             <input class="form-control"
               type="number"
-              value={balance_1}
-              placeholder="Enter a withdraw amount"
-              onChange={e => setBalance1(parseInt(e.target.value))}
+              value={getmoney}
+              placeholder="Enter a withdrawl amount"
+              onChange={e => setGetmmoney(parseInt(e.target.value))}
             />
           </div>
 
-          <ReactBootstrap.Button variant="primary" onClick={calculate} disabled={!balance_1}>
+          <ReactBootstrap.Button variant="primary" onClick={calculate} disabled={!getmoney}>
             Withdraw
           </ReactBootstrap.Button>
 

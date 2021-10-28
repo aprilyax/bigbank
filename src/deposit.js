@@ -1,17 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from './createContext.js';
+import { UseContext } from './createContext.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// deposit react component
 function Deposit() {
-  const [balance, setBalance] = useContext(UserContext);
-  const [balance_1, setBalance1] = useState(0);
+  const [balance, setBalance] = useContext(UseContext);
+  const [addMoney, setAddMoney] = useState(0);
 
   function calculate() {
 
-    setBalance(balance + balance_1);
+    setBalance(balance + addMoney);
     console.log(balance);
  
+      // user success notification 
       toast.success('Balance Updated!', {
         position: 'top-center',
         autoClose: 5000,
@@ -22,9 +24,10 @@ function Deposit() {
         progress: undefined
       });
 
-    setBalance1(0);
+    setAddMoney(0);
   }
 
+  // Rendering the form inside bootstrap card; balance and deposit information
   return (
     <div class="card" style={{ margin: '20px'}}>
       <div class="card-body">
@@ -36,13 +39,13 @@ function Deposit() {
               <input class="form-control"
                 type="number"
                 min='0'
-                value={balance_1}
-                onChange={e => setBalance1(parseInt(e.target.value))}
+                value={addMoney}
+                onChange={e => setAddMoney(parseInt(e.target.value))}
                 placeholder="Enter deposit amount"
               />
             </div>
 
-          <button type="button" class="btn btn-primary" onClick={calculate} disabled={!balance_1}>
+          <button type="button" class="btn btn-primary" onClick={calculate} disabled={!addMoney}>
             Deposit
           </button>
 

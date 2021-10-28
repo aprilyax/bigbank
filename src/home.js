@@ -2,6 +2,8 @@ import React from 'react';
 //import img from './bank.svg'
 import bank from './bank.svg'
 import * as ReactBootstrap from 'react-bootstrap';
+
+// home react component
 function Home() {
   return (
     <>
@@ -14,7 +16,7 @@ function Home() {
     </ReactBootstrap.Card.Title>
     <br/>
     <ReactBootstrap.Card.Text>
-     <h5>Welcome to your banking portal. Please choose an action from the menu above. </h5>
+     <h5>Welcome to the banking portal. Please choose an action from the menu above. </h5>
     </ReactBootstrap.Card.Text>
     <ReactBootstrap.Card.Text><h5>Thank you for visiting!</h5></ReactBootstrap.Card.Text>
   </ReactBootstrap.Card.ImgOverlay>

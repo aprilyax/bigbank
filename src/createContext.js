@@ -1,2 +1,5 @@
 import { createContext } from 'react'
-export const UserContext = createContext(0);
+export const UseContext = createContext(0);
+
+// create context to be shared by components
+// context is imported at each page

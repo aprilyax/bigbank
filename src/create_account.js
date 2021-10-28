@@ -1,9 +1,10 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { UserContext } from './createContext.js';
+import { UseContext } from './createContext.js';
 import { ToastContainer, toast } from 'react-toastify';
 
+// form validation: fields may not be null; email must be x@xx.co; pw must be 8 or more characters
 const validate = values => {
   const errors = {};
 
@@ -25,10 +26,12 @@ const validate = values => {
   return errors;
 };
 
+// create account react component
 function CreateAccount() {
-
-  const [info, setInfo] = React.useContext(UserContext);
-
+  // user input
+  const [info, setInfo] = React.useContext(UseContext);  
+  
+  // keep track of form state; initial form field values empty
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -38,9 +41,11 @@ function CreateAccount() {
     validate,
   });
 
+  // function passed onClick
   function handleClick(e) {
-    e.preventDefault();   
+    e.preventDefault();    // prevent browser refresh (only call once when click on submit)
     
+    // user success notification 
     toast.success('Success!', {
       position: 'top-center',
       autoClose: 5000,
@@ -51,19 +56,22 @@ function CreateAccount() {
       progress: undefined
     });
 
+    // set values of each of the form fields based to user input and reset form fields
     setInfo([...info,formik.values.name,formik.values.email, formik.values.password]);
           formik.values.name = '';
           formik.values.email = '';
           formik.values.password = '';
       }
  
-
+  // Rendering the form inside bootstrap card
+  // call handleClick on submit
   return (
     <div class="card" style={{ margin: '20px'}}>
       <div class="card-body">
         <form>
           <div class="form-group">
             <label>Name:</label>
+            <br/>
               <input
                 id="name"
                 name="name"
@@ -79,6 +87,7 @@ function CreateAccount() {
 
           <div class="form-group" controlId="formBasicEmail">
             <label>Email Address:</label>
+            <br/>
               <input
                 id="email"
                 name="email"
@@ -94,6 +103,7 @@ function CreateAccount() {
 
           <div class="form-group" controlId="formBasicEmail">
             <label>Password:</label>
+            <br/>
               <input
                 id="password"
                 name="password"
@@ -106,9 +116,9 @@ function CreateAccount() {
               <div style={{color:'red'}}>{formik.errors.password}</div>
             ) : null}
           </div>
-
-            <button type="submit" class="btn btn-primary" id="button"
-            disabled={formik.errors.email || formik.errors.password || formik.errors.name} 
+          
+            <button type="submit" ClassName='button' id="button"
+            disabled={!(formik.isValid && formik.dirty)} 
             onClick={handleClick}>Submit</button> 
 
           <ToastContainer
